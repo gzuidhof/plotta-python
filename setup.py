@@ -6,6 +6,9 @@ setup(
     version='1.0.0a1',
     install_requires=['unirest'],
 
+    author='Guido Zuidhof',
+    author_email='me@guido.io',
+
     description='Python wrapper for Plotta API',
     url='https://github.com/gzuidhof/plotta-python',
     license='MIT',
