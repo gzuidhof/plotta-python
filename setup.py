@@ -1,13 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
     name='plotta',
-    version='1.0.0a2',
+    version='1.0.0a3',
     install_requires=['unirest'],
 
     author='Guido Zuidhof',
     author_email='me@guido.io',
+	
+	packages=find_packages(),
 
     description='Python wrapper for Plotta API',
     url='https://github.com/gzuidhof/plotta-python',
