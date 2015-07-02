@@ -9,22 +9,22 @@ PLOTTA_ENABLED = True
 
 # API endpoint wrappers
 def job_new(job_id, name, node):
-    payload = {'id': job_id, 'name': name, 'node': node}
+    payload = {'job_id': job_id, 'name': name, 'node': node}
     url = "http://{0}:{1}/api/job/new".format(HOSTNAME, PORT)
     return sync_request(url, payload)
 
 def job_stop(job_id):
-    payload = {'id': job_id}
+    payload = {'job_id': job_id}
     url = "http://{0}:{1}/api/job/stop".format(HOSTNAME, PORT)
     async_request(url, payload)
 
 def stream_new(stream_id, job_id, title, x_name, y_name):
-    payload = {'id': stream_id, 'job_id': job_id, 'title': title, 'xName': x_name, 'yName': y_name}
+    payload = {'stream_id': stream_id, 'job_id': job_id, 'title': title, 'xName': x_name, 'yName': y_name}
     url = "http://{0}:{1}/api/stream/new".format(HOSTNAME, PORT)
     return sync_request(url, payload)
 
 def append(stream_id, job_id, x, y):
-    payload = {'id': stream_id, 'job_id': job_id, 'x': x, 'y': y}
+    payload = {'stream_id': stream_id, 'job_id': job_id, 'x': x, 'y': y}
     url = "http://{0}:{1}/api/stream/append".format(HOSTNAME, PORT)
     async_request(url, payload)
 
@@ -34,6 +34,7 @@ def sync_request(url, payload):
         check_success(response)
         return response
     except Exception, e:
+        check_success(None)
         return None
 
 def async_request(url, payload):
