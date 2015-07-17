@@ -18,8 +18,8 @@ def job_stop(job_id):
     url = "http://{0}:{1}/api/job/stop".format(HOSTNAME, PORT)
     async_request(url, payload)
 
-def stream_new(stream_id, job_id, title, x_name, y_name):
-    payload = {'stream_id': stream_id, 'job_id': job_id, 'title': title, 'xName': x_name, 'yName': y_name}
+def stream_new(stream_id, job_id, namw, x_name, y_name):
+    payload = {'stream_id': stream_id, 'job_id': job_id, 'name': name, 'xName': x_name, 'yName': y_name}
     url = "http://{0}:{1}/api/stream/new".format(HOSTNAME, PORT)
     return sync_request(url, payload)
 
@@ -73,29 +73,29 @@ class Job():
         if PLOTTA_ENABLED:
             job_stop(self.job_id)
 
-    def add_stream(self, title, stream_id=None, x_name="", y_name=""):
+    def add_stream(self, name, stream_id=None, x_name="", y_name=""):
 
         if stream_id is None:
             #Generate a unique ID for this stream
             stream_id = uuid.uuid4()
 
-        stream = Stream(stream_id, self.job_id, title, x_name, y_name)
+        stream = Stream(stream_id, self.job_id, name, x_name, y_name)
         stream.start()
 
         return stream
 
 class Stream():
 
-    def __init__(self, stream_id, job_id, title, x_name, y_name):
+    def __init__(self, stream_id, job_id, namw, x_name, y_name):
         self.stream_id = stream_id
         self.job_id = job_id
-        self.title = title
+        self.name = name
         self.x_name = x_name
         self.y_name = y_name
 
     def start(self):
         if PLOTTA_ENABLED:
-            stream_new(self.stream_id, self.job_id, self.title, self.x_name, self.y_name)
+            stream_new(self.stream_id, self.job_id, self.name, self.x_name, self.y_name)
 
     def append(self, x, y):
         if PLOTTA_ENABLED:

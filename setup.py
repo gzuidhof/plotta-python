@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='plotta',
-    version='1.0.1a1',
+    version='1.0.2a1',
     install_requires=['unirest'],
 
     author='Guido Zuidhof',
