@@ -18,7 +18,7 @@ def job_stop(job_id):
     url = "http://{0}:{1}/api/job/stop".format(HOSTNAME, PORT)
     async_request(url, payload)
 
-def stream_new(stream_id, job_id, namw, x_name, y_name):
+def stream_new(stream_id, job_id, name, x_name, y_name):
     payload = {'stream_id': stream_id, 'job_id': job_id, 'name': name, 'xName': x_name, 'yName': y_name}
     url = "http://{0}:{1}/api/stream/new".format(HOSTNAME, PORT)
     return sync_request(url, payload)
